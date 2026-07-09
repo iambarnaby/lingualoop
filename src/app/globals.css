@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-deep: #0a0c14;
-  --color-surface: #111420;
-  --color-card: #181b2c;
-  --color-card-hover: #1f2340;
-  --color-elevated: #252940;
+  --color-deep: #f0faf5;
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-card-hover: #f0fdf4;
+  --color-elevated: #f0fdf4;
 
-  --color-accent: #e8a040;
-  --color-accent-hover: #f0b45c;
-  --color-secondary: #7c8cf8;
-  --color-success: #4ecb71;
-  --color-danger: #f06060;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-secondary: #6366f1;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
 
-  --color-text-primary: #ece7dd;
-  --color-text-secondary: #908c9e;
-  --color-text-muted: #5a576e;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
 
-  --color-border: #262a3e;
-  --color-border-light: #333752;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
 
   --font-display: var(--font-fraunces);
   --font-body: var(--font-dm-sans);
@@ -26,25 +26,39 @@
 }
 
 html {
-  background: var(--color-deep);
+  background: #f0faf5;
   color: var(--color-text-primary);
 }
 
 body {
   font-family: var(--font-body), system-ui, sans-serif;
-  background: var(--color-deep);
+  background: linear-gradient(160deg, #f0faf5 0%, #ffffff 40%, #f5fef9 100%);
   min-height: 100vh;
   position: relative;
 }
 
-/* Subtle noise texture overlay */
+/* Ambient green gradient orbs — the "infused" effect */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 8% 45%, rgba(5, 150, 105, 0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 70% at 88% 18%, rgba(16, 185, 129, 0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 55% at 55% 88%, rgba(52, 211, 153, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 35% at 38% 8%, rgba(5, 150, 105, 0.06) 0%, transparent 60%);
+}
+
+/* Subtle grain texture */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: 0.018;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -58,11 +72,11 @@ body::after {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-light);
+  background: #cbd5e1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
+  background: #94a3b8;
 }
 
 /* Vocab word highlights in stories */
@@ -75,13 +89,25 @@ body::after {
   text-decoration-thickness: 1.5px;
 }
 
-/* Card glow on hover */
+/* ── Frosted glass card effect ── */
 .card-glow {
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 4px 16px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
 }
 .card-glow:hover {
-  box-shadow: 0 0 24px rgba(232, 160, 64, 0.07);
-  border-color: var(--color-border-light);
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 8px 32px rgba(5, 150, 105, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-color: rgba(5, 150, 105, 0.15) !important;
   transform: translateY(-1px);
 }
 
@@ -111,9 +137,9 @@ body::after {
   animation: fadeSlideIn 0.45s ease-out;
 }
 
-/* Gradient text utility */
+/* Gradient text — emerald */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #f0c870 100%);
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -121,10 +147,10 @@ body::after {
 
 /* Ambient glow behind sidebar logo */
 .logo-glow {
-  text-shadow: 0 0 40px rgba(232, 160, 64, 0.3);
+  text-shadow: 0 0 40px rgba(5, 150, 105, 0.25);
 }
 
-/* Pulse animation for generating states */
+/* Pulse animation for loading states */
 @keyframes gentlePulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }

@@ -99,7 +99,7 @@ export default function StoriesPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-deep/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+              className="fixed inset-0 bg-black/25 backdrop-blur-sm z-50 flex items-center justify-center p-6"
               onClick={() => setExpandedId(null)}
             >
               <motion.div
@@ -107,10 +107,10 @@ export default function StoriesPage() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                className="bg-surface border border-border rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+                className="bg-white/70 backdrop-blur-xl border border-white/50 rounded-2xl shadow-lg shadow-black/[0.03] max-w-2xl w-full max-h-[80vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="sticky top-0 bg-surface/90 backdrop-blur-md border-b border-border px-6 py-4 flex items-center justify-between">
+                <div className="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-border px-6 py-4 flex items-center justify-between">
                   <h2 className="font-display text-xl font-bold truncate">{story.title}</h2>
                   <div className="flex items-center gap-2">
                     <button

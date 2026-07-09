@@ -162,7 +162,7 @@ export default function ChatPage() {
           <button
             type="submit"
             disabled={!input.trim() || loading}
-            className="bg-accent text-deep font-semibold px-5 py-3 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2 text-sm"
+            className="bg-accent text-white font-semibold px-5 py-3 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2 text-sm"
           >
             <Send size={15} />
           </button>

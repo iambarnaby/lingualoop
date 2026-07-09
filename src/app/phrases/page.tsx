@@ -89,7 +89,7 @@ export default function PhrasesPage() {
           <button
             type="submit"
             disabled={!phrase.trim() || !translation.trim()}
-            className="bg-accent text-deep font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+            className="bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
           >
             <Plus size={15} />
             Add

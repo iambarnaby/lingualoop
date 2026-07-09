@@ -64,7 +64,7 @@ export default function FlashcardsPage() {
           </p>
           <Link
             href="/generate"
-            className="inline-flex items-center gap-2 bg-accent text-deep font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors"
           >
             Generate a Story
           </Link>
@@ -124,7 +124,7 @@ export default function FlashcardsPage() {
             >
               <div className={`flashcard-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
                 {/* Front */}
-                <div className="flashcard-front absolute inset-0 bg-card border border-border rounded-2xl flex flex-col items-center justify-center p-8">
+                <div className="flashcard-front absolute inset-0 bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl flex flex-col items-center justify-center p-8 shadow-lg shadow-black/[0.03]">
                   <p className="text-text-muted text-xs tracking-widest uppercase mb-4">
                     Word
                   </p>
@@ -134,7 +134,7 @@ export default function FlashcardsPage() {
                   <p className="text-text-muted text-xs mt-6">tap to reveal</p>
                 </div>
                 {/* Back */}
-                <div className="flashcard-back absolute inset-0 bg-elevated border border-accent/20 rounded-2xl flex flex-col items-center justify-center p-8">
+                <div className="flashcard-back absolute inset-0 bg-white/70 backdrop-blur-xl border border-accent/25 rounded-2xl flex flex-col items-center justify-center p-8 shadow-lg shadow-accent/[0.05]">
                   <p className="text-accent text-xs tracking-widest uppercase mb-4">
                     Translation
                   </p>

@@ -107,7 +107,7 @@ export default function VocabPage() {
           <button
             type="submit"
             disabled={!word.trim() || !translation.trim()}
-            className="bg-accent text-deep font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2"
+            className="bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2"
           >
             <Plus size={15} />
             Add

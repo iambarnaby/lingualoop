@@ -156,7 +156,7 @@ export default function Dashboard() {
             </p>
             <Link
               href="/vocab"
-              className="inline-flex items-center gap-2 bg-accent text-deep font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-2 bg-accent text-white font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors"
             >
               <LayoutList size={14} />
               Add Vocabulary

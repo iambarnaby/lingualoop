@@ -29,7 +29,8 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-surface/80 backdrop-blur-xl border-r border-border flex flex-col z-50">
+    <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-white/60 backdrop-blur-2xl border-r border-white/40 flex flex-col z-50"
+      style={{ boxShadow: '4px 0 30px rgba(0,0,0,0.03)' }}>
       {/* Logo */}
       <Link href="/" className="block px-6 pt-7 pb-6">
         <h1 className="font-display text-2xl font-bold tracking-tight">

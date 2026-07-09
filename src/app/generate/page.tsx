@@ -161,7 +161,7 @@ export default function GeneratePage() {
           <button
             onClick={generate}
             disabled={selectedIds.size === 0 || generating}
-            className="w-full bg-accent text-deep font-semibold py-3.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+            className="w-full bg-accent text-white font-semibold py-3.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
           >
             {generating ? (
               <>
@@ -191,7 +191,7 @@ export default function GeneratePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-deep/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-50 flex items-center justify-center p-6"
             onClick={handleDiscard}
           >
             <motion.div
@@ -199,10 +199,10 @@ export default function GeneratePage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="bg-surface border border-border rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              className="bg-white/70 backdrop-blur-xl border border-white/50 rounded-2xl shadow-lg shadow-black/[0.03] max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="sticky top-0 bg-surface/90 backdrop-blur-md border-b border-border px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-border px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Sparkles size={16} className="text-accent" />
                   <span className="text-text-muted text-sm">Generated Story</span>
@@ -241,10 +241,10 @@ export default function GeneratePage() {
               </div>
 
               {/* Actions */}
-              <div className="sticky bottom-0 bg-surface/90 backdrop-blur-md border-t border-border px-6 py-4 flex gap-3">
+              <div className="sticky bottom-0 bg-white/80 backdrop-blur-xl border-t border-border px-6 py-4 flex gap-3">
                 <button
                   onClick={handleSave}
-                  className="flex-1 bg-accent text-deep font-semibold py-3 rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 text-sm"
+                  className="flex-1 bg-accent text-white font-semibold py-3 rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 text-sm"
                 >
                   <Save size={15} />
                   Save Story
