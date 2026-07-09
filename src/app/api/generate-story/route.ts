@@ -11,11 +11,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { words } = await request.json();
+    const { words, language } = await request.json();
 
     if (!words || !Array.isArray(words) || words.length === 0) {
       return NextResponse.json({ error: 'No words provided' }, { status: 400 });
     }
+
+    const langNames: Record<string, string> = {
+      ru: 'Russian',
+      zh: 'Chinese (Mandarin)',
+      ja: 'Japanese',
+    };
+    const langName = langNames[language] || 'the target language';
 
     const wordList = words
       .map((w: { word: string; translation: string }) => `${w.word} (${w.translation})`)
@@ -29,14 +36,15 @@ export async function POST(request: Request) {
       messages: [
         {
           role: 'user',
-          content: `You are a TPRS (Teaching Proficiency through Reading and Storytelling) language teacher. Create a short, engaging, comprehensible story that naturally incorporates the following vocabulary words. The story should:
+          content: `You are a TPRS (Teaching Proficiency through Reading and Storytelling) language teacher specialising in ${langName}. Create a short, engaging, comprehensible story that naturally incorporates the following ${langName} vocabulary words. The story should:
 
-1. Be written primarily in English but weave in the target vocabulary words naturally
+1. Be written primarily in English but weave in the ${langName} vocabulary words naturally in their original script
 2. Use simple, repetitive sentence structures (a key TPRS principle)
 3. Be engaging and slightly humorous if possible
 4. Be 150-250 words long
 5. Use each vocabulary word at least once, ideally 2-3 times
 6. Bold the vocabulary words by wrapping them in **asterisks**
+7. Include the English translation in parentheses the first time each word appears
 
 Vocabulary to include: ${wordList}
 

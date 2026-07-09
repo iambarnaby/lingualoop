@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Send, Loader2, Trash2, Bot, User } from 'lucide-react';
 
 export default function ChatPage() {
-  const { chatMessages, addChatMessage, clearChat, phrases, _hasHydrated } = useStore();
+  const { chatMessages, addChatMessage, clearChat, phrases, targetLanguage, _hasHydrated } = useStore();
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -32,6 +32,7 @@ export default function ChatPage() {
           message,
           phrases: phrases.map((p) => ({ phrase: p.phrase, translation: p.translation })),
           history: chatMessages.slice(-20).map((m) => ({ role: m.role, content: m.content })),
+          language: targetLanguage,
         }),
       });
 

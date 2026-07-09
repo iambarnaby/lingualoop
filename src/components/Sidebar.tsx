@@ -16,6 +16,12 @@ import {
   X,
 } from 'lucide-react';
 
+const LANGUAGES = [
+  { code: 'ru', name: 'Russian', native: 'Русский', flag: '🇷🇺' },
+  { code: 'zh', name: 'Chinese', native: '中文', flag: '🇨🇳' },
+  { code: 'ja', name: 'Japanese', native: '日本語', flag: '🇯🇵' },
+];
+
 const tprsLinks = [
   { href: '/stories', label: 'Stories', icon: BookOpen },
   { href: '/vocab', label: 'Vocabulary', icon: LayoutList },
@@ -35,7 +41,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const { theme, toggleTheme } = useStore();
+  const { theme, toggleTheme, targetLanguage, setTargetLanguage } = useStore();
 
   const renderLinks = (links: typeof tprsLinks) =>
     links.map((link) => {
@@ -109,6 +115,33 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             Story-driven fluency
           </p>
         </Link>
+
+        {/* Language Selector */}
+        <div className="px-3 pb-4">
+          <p className="text-text-muted text-[10px] font-semibold tracking-[0.2em] uppercase px-3 mb-2">
+            Language
+          </p>
+          <div className="space-y-0.5">
+            {LANGUAGES.map((lang) => {
+              const active = targetLanguage === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  onClick={() => setTargetLanguage(lang.code)}
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    active
+                      ? 'text-accent bg-accent/10'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-card'
+                  }`}
+                >
+                  <span className="text-base leading-none">{lang.flag}</span>
+                  <span>{lang.name}</span>
+                  <span className="text-text-muted text-xs ml-auto">{lang.native}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <div className="h-px bg-border mx-5" />
 

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export default function GeneratePage() {
-  const { vocabWords, addStory, _hasHydrated } = useStore();
+  const { vocabWords, addStory, targetLanguage, _hasHydrated } = useStore();
   const [generating, setGenerating] = useState(false);
   const [generatedTitle, setGeneratedTitle] = useState('');
   const [generatedContent, setGeneratedContent] = useState('');
@@ -58,6 +58,7 @@ export default function GeneratePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           words: wordsToUse.map((w) => ({ id: w.id, word: w.word, translation: w.translation })),
+          language: targetLanguage,
         }),
       });
 

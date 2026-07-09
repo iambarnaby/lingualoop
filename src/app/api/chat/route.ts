@@ -11,11 +11,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { message, phrases, history } = await request.json();
+    const { message, phrases, history, language } = await request.json();
 
     if (!message) {
       return NextResponse.json({ error: 'No message provided' }, { status: 400 });
     }
+
+    const langNames: Record<string, string> = {
+      ru: 'Russian',
+      zh: 'Chinese (Mandarin)',
+      ja: 'Japanese',
+    };
+    const langName = langNames[language] || 'the target language';
 
     const phraseList =
       phrases && phrases.length > 0
@@ -26,18 +33,19 @@ export async function POST(request: Request) {
 
     const client = new Anthropic({ apiKey });
 
-    const systemPrompt = `You are a language practice partner. Your role is to have a natural conversation with the learner, using the following common phrases as much as possible. Act like you are running through a scripted dialogue — guide the conversation so the learner gets to practice these phrases in context.
+    const systemPrompt = `You are a ${langName} language practice partner. Your role is to have a natural conversation with the learner in ${langName}, using the following common phrases as much as possible. Act like you are running through a scripted dialogue — guide the conversation so the learner gets to practice these phrases in context.
 
 Common phrases to use:
 ${phraseList}
 
 Guidelines:
-- Use the common phrases almost exclusively in your responses
+- Use the common phrases almost exclusively in your responses, written in ${langName} script
 - Keep responses short (1-3 sentences)
 - If the learner seems stuck, gently guide them toward using one of the phrases
-- Mix the target language phrases with English translations in parentheses when first introducing them
+- Include English translations in parentheses when first introducing a phrase
 - Be encouraging and natural
-- Create realistic conversation scenarios (ordering food, asking directions, greetings, etc.)`;
+- Create realistic conversation scenarios (ordering food, asking directions, greetings, etc.)
+- Always respond in ${langName} with English support — never respond fully in English`;
 
     const messages: Anthropic.MessageParam[] = [
       ...(history || []).map((m: { role: string; content: string }) => ({
