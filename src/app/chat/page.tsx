@@ -59,7 +59,7 @@ export default function ChatPage() {
   return (
     <div className="flex flex-col h-screen page-enter">
       {/* Header */}
-      <div className="border-b border-border px-8 py-5 flex items-center justify-between shrink-0">
+      <div className="border-b border-border px-5 md:px-8 py-4 md:py-5 flex items-center justify-between shrink-0">
         <div>
           <h1 className="font-display text-2xl font-bold tracking-tight">Practice Chat</h1>
           <p className="text-text-muted text-sm mt-0.5">
@@ -80,7 +80,7 @@ export default function ChatPage() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-8 py-6">
+      <div className="flex-1 overflow-y-auto px-4 md:px-8 py-6">
         {chatMessages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center">
             <div className="w-16 h-16 rounded-2xl bg-card border border-border flex items-center justify-center mb-5">
@@ -108,7 +108,7 @@ export default function ChatPage() {
                   </div>
                 )}
                 <div
-                  className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                  className={`max-w-[85%] md:max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                     msg.role === 'user'
                       ? 'bg-accent/15 text-text-primary rounded-br-md'
                       : 'bg-card border border-border text-text-primary rounded-bl-md'
@@ -149,7 +149,7 @@ export default function ChatPage() {
       </div>
 
       {/* Input */}
-      <div className="border-t border-border px-8 py-4 shrink-0">
+      <div className="border-t border-border px-4 md:px-8 py-4 shrink-0">
         <form onSubmit={handleSend} className="max-w-2xl mx-auto flex gap-3">
           <input
             type="text"

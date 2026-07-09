@@ -51,8 +51,8 @@ export default function VocabPage() {
     );
 
   return (
-    <div className="p-8 lg:p-12 max-w-4xl page-enter">
-      <div className="flex items-start justify-between mb-8">
+    <div className="p-5 md:p-8 lg:p-12 max-w-4xl page-enter">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
         <div>
           <h1 className="font-display text-3xl font-bold tracking-tight mb-2">Vocabulary</h1>
           <p className="text-text-secondary">
@@ -71,7 +71,7 @@ export default function VocabPage() {
       </div>
 
       {/* Stats Bar */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
         <div className="bg-card border border-border rounded-xl px-5 py-4">
           <p className="text-2xl font-bold font-display">{vocabWords.length}</p>
           <p className="text-text-muted text-xs mt-0.5">Total Words</p>
@@ -89,7 +89,7 @@ export default function VocabPage() {
       {/* Add Word Form */}
       <form onSubmit={handleAdd} className="bg-card border border-border rounded-2xl p-5 mb-6">
         <p className="text-text-secondary text-sm font-medium mb-3">Add a new word</p>
-        <div className="flex gap-3">
+        <div className="flex flex-col md:flex-row gap-3">
           <input
             type="text"
             value={word}

@@ -25,6 +25,9 @@ interface LinguaStore {
   targetLanguage: string;
   setTargetLanguage: (lang: string) => void;
 
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+
   _hasHydrated: boolean;
   setHasHydrated: (v: boolean) => void;
 }
@@ -37,9 +40,13 @@ export const useStore = create<LinguaStore>()(
       phrases: [],
       chatMessages: [],
       targetLanguage: '',
+      theme: 'light',
       _hasHydrated: false,
 
       setHasHydrated: (v) => set({ _hasHydrated: v }),
+
+      toggleTheme: () =>
+        set((s) => ({ theme: s.theme === 'light' ? 'dark' : 'light' })),
 
       addVocabWord: (word, translation) =>
         set((s) => ({

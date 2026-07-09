@@ -104,7 +104,7 @@ export default function GeneratePage() {
   }
 
   return (
-    <div className="p-8 lg:p-12 max-w-4xl page-enter">
+    <div className="p-5 md:p-8 lg:p-12 max-w-4xl page-enter">
       <div className="mb-8">
         <h1 className="font-display text-3xl font-bold tracking-tight mb-2">Generate Story</h1>
         <p className="text-text-secondary">
@@ -191,7 +191,7 @@ export default function GeneratePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            className="fixed inset-0 bg-black/25 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-0 md:p-6"
             onClick={handleDiscard}
           >
             <motion.div
@@ -199,10 +199,10 @@ export default function GeneratePage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="bg-white/70 backdrop-blur-xl border border-white/50 rounded-2xl shadow-lg shadow-black/[0.03] max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              className="glass-heavy rounded-t-2xl md:rounded-2xl max-w-2xl w-full max-h-[90vh] md:max-h-[80vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="sticky top-0 bg-white/80 backdrop-blur-xl border-b border-border px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 glass-heavy border-b border-border px-5 md:px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Sparkles size={16} className="text-accent" />
                   <span className="text-text-muted text-sm">Generated Story</span>
@@ -241,7 +241,7 @@ export default function GeneratePage() {
               </div>
 
               {/* Actions */}
-              <div className="sticky bottom-0 bg-white/80 backdrop-blur-xl border-t border-border px-6 py-4 flex gap-3">
+              <div className="sticky bottom-0 glass-heavy border-t border-border px-4 md:px-6 py-4 flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={handleSave}
                   className="flex-1 bg-accent text-white font-semibold py-3 rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 text-sm"

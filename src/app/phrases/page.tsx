@@ -53,7 +53,7 @@ export default function PhrasesPage() {
   }
 
   return (
-    <div className="p-8 lg:p-12 max-w-4xl page-enter">
+    <div className="p-5 md:p-8 lg:p-12 max-w-4xl page-enter">
       <div className="mb-8">
         <h1 className="font-display text-3xl font-bold tracking-tight mb-2">Phrase Library</h1>
         <p className="text-text-secondary">

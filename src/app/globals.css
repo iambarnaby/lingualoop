@@ -25,6 +25,10 @@
   --font-reading: var(--font-newsreader);
 }
 
+/* ═══════════════════════════════════════
+   Light theme base
+   ═══════════════════════════════════════ */
+
 html {
   background: #f0faf5;
   color: var(--color-text-primary);
@@ -37,7 +41,7 @@ body {
   position: relative;
 }
 
-/* Ambient green gradient orbs — the "infused" effect */
+/* Ambient green gradient orbs */
 body::before {
   content: '';
   position: fixed;
@@ -64,32 +68,108 @@ body::after {
   background-size: 256px 256px;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+/* ═══════════════════════════════════════
+   Dark mode overrides
+   ═══════════════════════════════════════ */
+
+html.dark {
+  background: #0a0c14;
+  color: #ece7dd;
 }
 
-/* Vocab word highlights in stories */
-.vocab-highlight {
-  color: var(--color-accent);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--color-accent);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
+.dark {
+  --color-deep: #0a0c14;
+  --color-surface: #111420;
+  --color-card: #181b2c;
+  --color-card-hover: #1f2340;
+  --color-elevated: #1f2340;
+  --color-accent: #10b981;
+  --color-accent-hover: #34d399;
+  --color-secondary: #818cf8;
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+  --color-text-primary: #ece7dd;
+  --color-text-secondary: #908c9e;
+  --color-text-muted: #5a576e;
+  --color-border: #262a3e;
+  --color-border-light: #333752;
 }
 
-/* ── Frosted glass card effect ── */
+.dark body {
+  background: linear-gradient(160deg, #0a0c14 0%, #0d1017 40%, #0a0c14 100%);
+}
+
+.dark body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 8% 45%, rgba(16, 185, 129, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 70% at 88% 18%, rgba(16, 185, 129, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 55% at 55% 88%, rgba(52, 211, 153, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 35% at 38% 8%, rgba(16, 185, 129, 0.03) 0%, transparent 60%);
+}
+
+.dark body::after {
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+}
+
+/* ═══════════════════════════════════════
+   Scrollbar
+   ═══════════════════════════════════════ */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.dark ::-webkit-scrollbar-thumb { background: #333752; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #5a576e; }
+
+/* ═══════════════════════════════════════
+   Glass surfaces
+   ═══════════════════════════════════════ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
+}
+.dark .glass {
+  background: rgba(24, 27, 44, 0.55);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+}
+
+.glass-heavy {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+.dark .glass-heavy {
+  background: rgba(17, 20, 32, 0.82);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile header bar */
+.mobile-header {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.dark .mobile-header {
+  background: rgba(10, 12, 20, 0.72);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ═══════════════════════════════════════
+   Card glow (frosted interactive cards)
+   ═══════════════════════════════════════ */
+
 .card-glow {
   background: rgba(255, 255, 255, 0.55) !important;
   backdrop-filter: blur(18px);
@@ -111,7 +191,36 @@ body::after {
   transform: translateY(-1px);
 }
 
-/* Flashcard 3D flip */
+.dark .card-glow {
+  background: rgba(24, 27, 44, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+.dark .card-glow:hover {
+  background: rgba(24, 27, 44, 0.65) !important;
+  border-color: rgba(16, 185, 129, 0.15) !important;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 8px 32px rgba(16, 185, 129, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ═══════════════════════════════════════
+   Vocab highlights & flashcard flip
+   ═══════════════════════════════════════ */
+
+.vocab-highlight {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
 .flashcard-inner {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
@@ -128,7 +237,10 @@ body::after {
   transform: rotateY(180deg);
 }
 
-/* Page enter animation */
+/* ═══════════════════════════════════════
+   Animations & utilities
+   ═══════════════════════════════════════ */
+
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -137,20 +249,26 @@ body::after {
   animation: fadeSlideIn 0.45s ease-out;
 }
 
-/* Gradient text — emerald */
 .gradient-text {
   background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.dark .gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-/* Ambient glow behind sidebar logo */
 .logo-glow {
   text-shadow: 0 0 40px rgba(5, 150, 105, 0.25);
 }
+.dark .logo-glow {
+  text-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+}
 
-/* Pulse animation for loading states */
 @keyframes gentlePulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }

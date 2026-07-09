@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Fraunces, DM_Sans, Newsreader } from 'next/font/google';
-import Sidebar from '@/components/Sidebar';
+import LayoutShell from '@/components/LayoutShell';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -35,12 +35,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fraunces.variable} ${dmSans.variable} ${newsreader.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex">
-        <Sidebar />
-        <main className="flex-1 ml-[260px] min-h-screen">
-          {children}
-        </main>
+      <body className="min-h-full">
+        <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
   );

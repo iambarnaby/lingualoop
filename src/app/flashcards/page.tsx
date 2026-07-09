@@ -51,7 +51,7 @@ export default function FlashcardsPage() {
 
   if (learnedWords.length === 0) {
     return (
-      <div className="p-8 lg:p-12 max-w-3xl page-enter">
+      <div className="p-5 md:p-8 lg:p-12 max-w-3xl page-enter">
         <h1 className="font-display text-3xl font-bold tracking-tight mb-2">Flashcards</h1>
         <p className="text-text-secondary mb-8">
           Review vocabulary that you&apos;ve encountered in stories.
@@ -76,7 +76,7 @@ export default function FlashcardsPage() {
   const progress = ((currentIndex + 1) / shuffled.length) * 100;
 
   return (
-    <div className="p-8 lg:p-12 max-w-3xl page-enter">
+    <div className="p-5 md:p-8 lg:p-12 max-w-3xl page-enter">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="font-display text-3xl font-bold tracking-tight mb-2">Flashcards</h1>
@@ -119,7 +119,7 @@ export default function FlashcardsPage() {
             transition={{ duration: 0.25 }}
           >
             <div
-              className="w-[420px] h-[280px] cursor-pointer perspective-[1000px]"
+              className="w-full max-w-[420px] h-[260px] md:h-[280px] cursor-pointer perspective-[1000px]"
               onClick={() => setIsFlipped(!isFlipped)}
             >
               <div className={`flashcard-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
