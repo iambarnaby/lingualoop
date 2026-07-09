@@ -165,7 +165,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.15 }}
-                className="absolute left-5 right-5 top-full mt-1 glass-heavy rounded-xl overflow-hidden z-10"
+                className="absolute left-5 right-5 top-full mt-1 bg-surface border border-border rounded-xl overflow-hidden z-10 shadow-lg"
               >
                 {LANGUAGES.map((lang) => {
                   const selected = targetLanguage === lang.code;
