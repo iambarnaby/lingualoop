@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useStore } from '@/store/useStore';
@@ -14,6 +15,8 @@ import {
   Sun,
   Moon,
   X,
+  ChevronDown,
+  Globe,
 } from 'lucide-react';
 
 const LANGUAGES = [
@@ -42,6 +45,21 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const { theme, toggleTheme, targetLanguage, setTargetLanguage } = useStore();
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+
+  const currentLang = LANGUAGES.find((l) => l.code === targetLanguage);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   const renderLinks = (links: typeof tprsLinks) =>
     links.map((link) => {
@@ -106,7 +124,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </button>
 
         {/* Logo */}
-        <Link href="/" onClick={onClose} className="block px-6 pt-7 pb-6">
+        <Link href="/" onClick={onClose} className="block px-6 pt-7 pb-5">
           <h1 className="font-display text-2xl font-bold tracking-tight">
             <span className="gradient-text logo-glow">Lingua</span>
             <span className="text-text-primary">Loop</span>
@@ -116,31 +134,63 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </p>
         </Link>
 
-        {/* Language Selector */}
-        <div className="px-3 pb-4">
-          <p className="text-text-muted text-[10px] font-semibold tracking-[0.2em] uppercase px-3 mb-2">
-            Language
-          </p>
-          <div className="space-y-0.5">
-            {LANGUAGES.map((lang) => {
-              const active = targetLanguage === lang.code;
-              return (
-                <button
-                  key={lang.code}
-                  onClick={() => setTargetLanguage(lang.code)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    active
-                      ? 'text-accent bg-accent/10'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-card'
-                  }`}
-                >
-                  <span className="text-base leading-none">{lang.flag}</span>
-                  <span>{lang.name}</span>
-                  <span className="text-text-muted text-xs ml-auto">{lang.native}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Language Dropdown */}
+        <div className="px-5 pb-4 relative" ref={langRef}>
+          <button
+            onClick={() => setLangOpen(!langOpen)}
+            className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card border border-border text-sm font-medium transition-colors hover:border-border-light"
+          >
+            {currentLang ? (
+              <>
+                <span className="text-base leading-none">{currentLang.flag}</span>
+                <span className="text-text-primary">{currentLang.name}</span>
+                <span className="text-text-muted text-xs ml-auto">{currentLang.native}</span>
+              </>
+            ) : (
+              <>
+                <Globe size={16} className="text-text-muted" />
+                <span className="text-text-muted">Select language</span>
+              </>
+            )}
+            <ChevronDown
+              size={14}
+              className={`text-text-muted transition-transform duration-200 ${langOpen ? 'rotate-180' : ''} ${currentLang ? '' : 'ml-auto'}`}
+            />
+          </button>
+
+          <AnimatePresence>
+            {langOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.15 }}
+                className="absolute left-5 right-5 top-full mt-1 glass-heavy rounded-xl overflow-hidden z-10"
+              >
+                {LANGUAGES.map((lang) => {
+                  const selected = targetLanguage === lang.code;
+                  return (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setTargetLanguage(lang.code);
+                        setLangOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-sm font-medium transition-colors ${
+                        selected
+                          ? 'bg-accent/10 text-accent'
+                          : 'text-text-secondary hover:text-text-primary hover:bg-card'
+                      }`}
+                    >
+                      <span className="text-base leading-none">{lang.flag}</span>
+                      <span>{lang.name}</span>
+                      <span className="text-text-muted text-xs ml-auto">{lang.native}</span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="h-px bg-border mx-5" />
