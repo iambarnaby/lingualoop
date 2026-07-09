@@ -135,7 +135,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </Link>
 
         {/* Language Dropdown */}
-        <div className="px-5 pb-4 relative" ref={langRef}>
+        <div className="px-5 pb-4 relative z-20" ref={langRef}>
           <button
             onClick={() => setLangOpen(!langOpen)}
             className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card border border-border text-sm font-medium transition-colors hover:border-border-light"
@@ -165,7 +165,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.15 }}
-                className="absolute left-5 right-5 top-full mt-1 bg-surface border border-border rounded-xl overflow-hidden z-10 shadow-lg"
+                className="absolute left-5 right-5 top-full mt-1 bg-surface border border-border rounded-xl overflow-hidden z-[60] shadow-lg"
               >
                 {LANGUAGES.map((lang) => {
                   const selected = targetLanguage === lang.code;
